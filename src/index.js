@@ -33,12 +33,8 @@ app.get("/:ShortURL", async (req, res) => {
   } catch (e) {
     console.log(e);
   }
-
-  //   if (!shortUrl) {
-  //     res.sendStatus(404);
-  //   }
 });
 
-app.listen(process.env.port || 5000, () => {
+app.listen(5000, () => {
   console.log("server is on ");
 });
