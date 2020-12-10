@@ -1,14 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const URL = require("./models/URL");
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config/.env" });
 const app = express();
-mongoose.connect(
-  "mongodb+srv://admin:87654321@cluster0.0haku.mongodb.net/travel-partner-database?retryWrites=true",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+mongoose.connect(process.env.DATABASE, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 app.get("/", async (req, res) => {
@@ -34,7 +33,7 @@ app.get("/:ShortURL", async (req, res) => {
     console.log(e);
   }
 });
-
-app.listen(5000, () => {
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
   console.log("server is on ");
 });
