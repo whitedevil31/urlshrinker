@@ -1,11 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const URL = require("./models/URL");
 const dotenv = require("dotenv");
-dotenv.config({ path: "./config/.env" });
+dotenv.config({ path: "./config/dev.env" });
+const URL = require("./models/URL");
+
 const app = express();
 mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
+  useCreateIndex: true,
+  // autoIndex: true,
+  useFindAndModify: false,
   useUnifiedTopology: true,
 });
 app.set("view engine", "ejs");
